@@ -1,7 +1,7 @@
 <template>
   <section id="home-page">
     <Landing />
-    <AboutView />
+    <!-- <AboutView /> -->
     <Posts />
     <ContactView />
   </section>
@@ -10,7 +10,7 @@
 import Posts from "./AllPosts.vue";
 import Landing from "../components/Landing.vue";
 import ContactView from "./ContactView.vue";
-import AboutView from "./AboutView.vue";
+// import AboutView from "./AboutView.vue";
 
 export default {
   name: "Home",
@@ -18,7 +18,6 @@ export default {
     Posts,
     Landing,
     ContactView,
-    AboutView,
   },
 };
 </script>
