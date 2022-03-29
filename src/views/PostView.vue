@@ -24,7 +24,22 @@
           v-show="!loading && !errorMessage"
         />
         <span v-show="!loading && !errorMessage">{{ post.created_by }}</span>
-
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          class="bi bi-calendar-check text-muted"
+          viewBox="0 0 16 16"
+          v-show="!loading && !errorMessage"
+        >
+          <path
+            d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+          />
+          <path
+            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+          />
+        </svg>
         <span v-show="!loading && !errorMessage">
           {{ moment(post.updatedAt).format("MMM DD, YYYY") }}</span
         >
@@ -441,7 +456,7 @@ export default {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
   margin-top: 1rem;
 }
 .post-header h2 {
@@ -462,11 +477,11 @@ export default {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
   row-gap: 1rem;
 }
 .post-image {
-  width: 60%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -487,7 +502,7 @@ export default {
 }
 .action-buttons {
   display: flex;
-  width: 60%;
+  width: 50%;
   justify-content: flex-start;
   align-items: center;
   column-gap: 1rem;
@@ -514,7 +529,7 @@ textarea {
 }
 .updated {
   display: flex;
-  width: 60%;
+  width: 50%;
   flex-direction: row;
   justify-content: flex-start;
   column-gap: 1rem;
@@ -545,7 +560,7 @@ textarea {
   padding: 0;
 }
 .comment-container {
-  width: 60%;
+  width: 50%;
   min-width: 20%;
   display: flex;
   justify-content: center;
@@ -763,7 +778,8 @@ textarea {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    font-size: 12px;
+    font-size: 10px;
+    column-gap: 0.5rem;
     font-weight: 400;
     padding: 0;
     margin: 0;

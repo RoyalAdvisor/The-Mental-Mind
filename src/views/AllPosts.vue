@@ -39,10 +39,51 @@
         <div class="post-content">
           <div class="formatted-date">
             <h6 class="text-muted updated">
-              <span v-show="!loading && !errorMessage" class="text-muted"
-                >Uploaded at</span
-              >
+              <img :src="post.user_image" class="user-image" />
+              <span v-show="!loading && !errorMessage" class="text-muted">
+                {{ post.created_by }}
+              </span>
+              <span v-show="!loading && !errorMessage" class="text-muted">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-calendar text-muted"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                  />
+                </svg>
+              </span>
               {{ moment(post.createdAt).format("MMM DD, YYYY") }}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-chat text-muted"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"
+                />
+              </svg>
+              <span
+                v-show="!loading && !errorMessage"
+                class="text-muted"
+                v-if="post.comments"
+              >
+                {{ post.comments.length }}
+                <span
+                  v-show="
+                    post.comments.length >= 0 && post.comments.length != 1
+                  "
+                  >Comments</span
+                >
+                <span v-show="post.comments.length == 1">Comment</span>
+              </span>
             </h6>
           </div>
           <h3>{{ post.title }}</h3>
@@ -306,7 +347,7 @@ p {
 }
 .post-item {
   display: flex;
-  width: 60%;
+  width: 50%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -370,6 +411,13 @@ textarea {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+.user-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 100%;
 }
 .buttons {
   width: 100%;
@@ -550,6 +598,20 @@ textarea {
   width: 100%;
 }
 @media only screen and (max-width: 770px) {
+  .post-content {
+    padding: 10px;
+  }
+  .user-image {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100%;
+  }
+  svg {
+    width: 10px;
+    height: 10px;
+  }
   .about-content {
     display: flex;
     justify-content: center;
@@ -608,8 +670,10 @@ textarea {
     padding: 0;
   }
   .updated {
-    font-size: 12px;
-    font-weight: 300;
+    flex-direction: row;
+    font-size: 10px;
+    font-weight: 400;
+    column-gap: 0.5rem;
   }
   .read-btn {
     width: 60px;
