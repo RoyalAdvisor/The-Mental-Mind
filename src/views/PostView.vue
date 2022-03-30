@@ -16,35 +16,38 @@
       <header class="post-header">
         <h2>{{ post.title }}</h2>
       </header>
-      <h6 class="text-muted updated">
-        <img
-          :src="post.user_image"
-          alt="user-profile"
-          class="user-profile"
-          v-show="!loading && !errorMessage"
-        />
-        <span v-show="!loading && !errorMessage">{{ post.created_by }}</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          fill="currentColor"
-          class="bi bi-calendar-check text-muted"
-          viewBox="0 0 16 16"
-          v-show="!loading && !errorMessage"
-        >
-          <path
-            d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+      <div class="text-muted updated">
+        <div class="user">
+          <img
+            :src="post.user_image"
+            class="user-profile"
+            v-show="!loading && !errorMessage"
           />
-          <path
-            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
-          />
-        </svg>
-        <span v-show="!loading && !errorMessage">
-          {{ moment(post.updatedAt).format("MMM DD, YYYY") }}</span
-        >
-      </h6>
-      <div class="post-image">
+          <span v-show="!loading && !errorMessage">{{ post.created_by }}</span>
+        </div>
+        <div class="date">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-calendar-check text-muted"
+            viewBox="0 0 16 16"
+            v-show="!loading && !errorMessage"
+          >
+            <path
+              d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"
+            />
+            <path
+              d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+            />
+          </svg>
+          <span v-show="!loading && !errorMessage">
+            {{ moment(post.updatedAt).format("MMM DD, YYYY") }}</span
+          >
+        </div>
+      </div>
+      <div class="post-image" v-show="!loading && !errorMessage">
         <img :src="post.main_image" class="main-image" />
       </div>
       <article class="post-content">
@@ -539,6 +542,14 @@ textarea {
   padding: 0;
   margin: 0;
 }
+.user,
+.date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+}
 .comment-content p {
   font-family: "Cabin", sans-serif;
   font-size: 15px;
@@ -759,6 +770,13 @@ textarea {
   border-radius: 100%;
 }
 @media only screen and (max-width: 770px) {
+  .user-profile {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100%;
+  }
   .error-container {
     display: flex;
     justify-content: center;
@@ -783,6 +801,9 @@ textarea {
     font-weight: 400;
     padding: 0;
     margin: 0;
+  }
+  svg {
+    width: 10px;
   }
   .post-header h2 {
     font-size: 25px;
