@@ -33,7 +33,19 @@
               ></textarea>
             </div>
             <div class="form-button">
-              <button type="submit" class="submit-btn shadow">Submit</button>
+              <button
+                :disabled="loading"
+                type="submit"
+                class="submit-btn shadow"
+              >
+                <span v-show="!loading">Submit</span>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                  v-show="loading"
+                ></span>
+              </button>
             </div>
           </form>
         </div>
@@ -52,23 +64,29 @@ export default {
     return {
       email: "",
       message: "",
+      loading: false,
     };
   },
   methods: {
     handleSubmit() {
-      fetch("https://final-blog-api.herokuapp.com/contact", {
-        method: "POST",
-        body: JSON.stringify({
-          email: this.email,
-          message: this.message,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => alert((json.msg = "Form has been submitted")))
-        .catch((err) => alert((err.msg = "Form has failed")));
+      this.loading = true;
+      try {
+        fetch("https://final-blog-api.herokuapp.com/contact", {
+          method: "POST",
+          body: JSON.stringify({
+            email: this.email,
+            message: this.message,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => alert((json.msg = "Form has been submitted")))
+          .then(() => (this.loading = false));
+      } catch (error) {
+        alert((error.message = "An error occurred while submitting"));
+      }
     },
   },
 };
@@ -156,7 +174,7 @@ label {
   transition: ease-in-out 500ms;
 }
 .submit-btn:hover {
-  background: blueviolet;
+  background: transparent;
   color: #fff;
 }
 .form-group {
