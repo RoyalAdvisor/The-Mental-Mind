@@ -52,10 +52,8 @@
       </div>
       <article class="post-content">
         <h3>{{ post.subtitle }}</h3>
-        <p>
-          {{ post.desc }}
-        </p>
       </article>
+      <article class="post-content" v-html="post.desc"></article>
       <div class="action-buttons" v-if="currentUser">
         <button
           type="button"
@@ -213,6 +211,7 @@
                 v-model="updatedPost.desc"
                 class="form-control"
                 id="desc"
+                placeholder="This text area can render HTML :)"
               />
               <div class="col-md-12 info-message">
                 <h6>Note: All fields marked with * are required.</h6>
@@ -309,7 +308,7 @@ export default {
         main_image: "",
         title: "",
         subtitle: "",
-        desc: "",
+        desc: ``,
       },
       errorMessage: null,
       newComment: "",
@@ -467,14 +466,7 @@ export default {
   font-weight: 700;
   width: 100%;
 }
-.post-content h3 {
-  font-size: 32px;
-  font-weight: 600;
-  width: 100%;
-}
-.post-content p {
-  font-family: "Cabin", sans-serif;
-}
+/* TEXT MARKUP */
 .post-content {
   display: flex;
   justify-content: center;
@@ -483,6 +475,40 @@ export default {
   width: 50%;
   row-gap: 1rem;
 }
+.post-content p {
+  font-family: "Cabin", sans-serif;
+}
+.post-content h1 {
+  font-size: 36px;
+  font-weight: 600;
+  width: 100%;
+}
+.post-content h2 {
+  font-size: 34px;
+  font-weight: 600;
+  width: 100%;
+}
+.post-content h3 {
+  font-size: 32px;
+  font-weight: 600;
+  width: 100%;
+}
+.post-content h4 {
+  font-size: 30px;
+  font-weight: 600;
+  width: 100%;
+}
+.post-content h5 {
+  font-size: 28px;
+  font-weight: 600;
+  width: 100%;
+}
+.post-content h6 {
+  font-size: 26px;
+  font-weight: 600;
+  width: 100%;
+}
+
 .post-image {
   width: 50%;
   display: flex;
@@ -811,8 +837,45 @@ textarea {
     width: 100%;
     margin: 0;
   }
+
+  /* TEXT MARKUP */
+  .post-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    row-gap: 1rem;
+  }
+  .post-content h1 {
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+  }
+  .post-content h2 {
+    font-size: 22px;
+    font-weight: 600;
+    width: 100%;
+  }
   .post-content h3 {
     font-size: 20px;
+    font-weight: 600;
+    width: 100%;
+  }
+  .post-content h4 {
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+  }
+  .post-content h5 {
+    font-size: 17px;
+    font-weight: 600;
+    width: 100%;
+  }
+  .post-content h6 {
+    font-size: 16px;
+    font-weight: 600;
     width: 100%;
   }
   .post-content p {

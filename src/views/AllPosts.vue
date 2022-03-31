@@ -197,6 +197,7 @@
                 v-model="post.desc"
                 class="form-control"
                 id="desc"
+                placeholder="This text area can render HTML :)"
               />
               <div class="col-md-12 info-message">
                 <h6>Note: All fields marked with * are required.</h6>
@@ -241,7 +242,7 @@ export default {
         main_image: "",
         title: "",
         subtitle: "",
-        desc: "",
+        desc: ``,
         created_by: "",
       },
       errorMessage: null,
