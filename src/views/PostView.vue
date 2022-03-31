@@ -53,25 +53,47 @@
       <article class="post-content">
         <h3>{{ post.subtitle }}</h3>
       </article>
-      <article class="post-content" v-html="post.desc"></article>
+      <div class="post-markup" v-html="post.desc"></div>
       <div class="action-buttons" v-if="currentUser">
         <button
           type="button"
-          class="edit-btn shadow-sm"
+          class="edit-btn"
           data-bs-toggle="modal"
           data-bs-target="#editModal"
           v-if="currentUser.username == post.created_by"
         >
-          Edit
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-pencil-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+            />
+          </svg>
         </button>
         <button
           type="button"
-          class="delete-btn shadow-sm"
+          class="delete-btn"
           data-bs-toggle="modal"
           data-bs-target="#deleteModal"
           v-if="currentUser.username == post.created_by"
         >
-          Delete
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-x-circle-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+            />
+          </svg>
         </button>
       </div>
     </div>
@@ -93,13 +115,22 @@
         />
         <div class="comment-btn" v-if="currentUser">
           <button
-            class="comment-post-btn shadow-sm"
+            class="comment-post-btn"
             type="submit"
             v-show="!loading && !errorMessage"
-            :disabled="loading"
           >
-            <span v-show="!loading">Post</span>
-            <span v-show="loading">Posting...</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-send-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"
+              />
+            </svg>
           </button>
         </div>
       </form>
@@ -119,13 +150,22 @@
             </div>
             <div class="comment-action" v-if="currentUser">
               <button
-                class="comment-delete-btn shadow-sm"
+                class="comment-delete-btn"
                 @click.prevent="deleteComment(this.postId, comment._id)"
                 v-if="currentUser.username == comment.posted_by"
-                :disabled="loading"
               >
-                <span v-show="!loading">Delete</span>
-                <span v-show="loading">Deleting...</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -218,20 +258,22 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="cancel-btn shadow-sm"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="cancel-btn" data-bs-dismiss="modal">
                 Cancel
               </button>
               <button
-                type="submit"
-                class="update-btn shadow-sm"
+                @click.prevent="addPost"
+                class="update-btn"
+                type="button"
                 :disabled="loading"
               >
-                <span v-show="!loading">Update</span>
-                <span v-show="loading">Updating...</span>
+                <span v-show="!loading">Upload</span>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                  v-show="loading"
+                ></span>
               </button>
             </div>
           </form>
@@ -264,22 +306,22 @@
           ></button>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="cancel-btn shadow-sm"
-            data-bs-dismiss="modal"
-          >
+          <button type="button" class="cancel-btn" data-bs-dismiss="modal">
             Cancel
           </button>
           <button
             type="button"
-            class="post-delete-btn shadow-sm"
+            class="post-delete-btn"
             @click.prevent="deletePost(this.postId)"
-            data-bs-dismiss="modal"
             :disabled="loading"
           >
             <span v-show="!loading">Understood</span>
-            <span v-show="loading">Deleting...</span>
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+              v-show="loading"
+            ></span>
           </button>
         </div>
       </div>
@@ -475,35 +517,49 @@ export default {
   width: 50%;
   row-gap: 1rem;
 }
+.post-content h3 {
+  font-size: 40px;
+}
+.post-markup {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 50%;
+  row-gap: 0;
+}
 .post-content p {
   font-family: "Cabin", sans-serif;
 }
-.post-content h1 {
+.post-markup p {
+  font-family: "Cabin", sans-serif;
+}
+.post-markup h1 {
   font-size: 36px;
   font-weight: 600;
   width: 100%;
 }
-.post-content h2 {
+.post-markup h2 {
   font-size: 34px;
   font-weight: 600;
   width: 100%;
 }
-.post-content h3 {
+.post-markup h3 {
   font-size: 32px;
   font-weight: 600;
   width: 100%;
 }
-.post-content h4 {
+.post-markup h4 {
   font-size: 30px;
   font-weight: 600;
   width: 100%;
 }
-.post-content h5 {
+.post-markup h5 {
   font-size: 28px;
   font-weight: 600;
   width: 100%;
 }
-.post-content h6 {
+.post-markup h6 {
   font-size: 26px;
   font-weight: 600;
   width: 100%;
@@ -672,96 +728,99 @@ textarea {
   margin: 0;
   padding: 0;
 }
+.comment-delete-btn,
 .comment-post-btn {
   min-width: 80px;
   padding: 5px;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: none;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.comment-post-btn:hover {
-  background: blueviolet;
-  color: #fff;
-}
-.comment-delete-btn {
-  min-width: 80px;
-  padding: 5px;
-  outline: none;
-  border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+.comment-delete-btn svg,
+.comment-post-btn svg {
+  color: #1f1f1f;
+  width: 30px;
+  height: 30px;
   transition: ease-in-out 500ms;
+  filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.075));
 }
-.comment-delete-btn:hover {
-  background: red;
-  color: #fff;
+.comment-delete-btn svg:hover {
+  transform: scale(1.1);
+  color: red;
 }
-.edit-btn {
-  min-width: 80px;
-  padding: 5px;
-  outline: none;
-  border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
-  transition: ease-in-out 500ms;
+.comment-post-btn svg:hover {
+  transform: scale(1.1);
+  color: green;
 }
-.edit-btn:hover {
-  background: blueviolet;
-  color: #fff;
-}
+.edit-btn,
 .delete-btn {
-  min-width: 80px;
-  padding: 5px;
+  min-width: 60px;
+  padding: 0;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: transparent;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.delete-btn:hover {
-  background: red;
-  color: #fff;
+.edit-btn svg,
+.delete-btn svg {
+  color: #1f1f1f;
+  width: 30px;
+  height: 30px;
+  transition: ease-in-out 500ms;
+  filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.075));
+}
+.edit-btn svg:hover {
+  color: green;
+  transform: scale(1.1);
+}
+.delete-btn svg:hover {
+  color: red;
+  transform: scale(1.1);
 }
 .post-delete-btn {
   min-width: 80px;
   padding: 5px;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: transparent;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
 }
 .post-delete-btn:hover {
-  background: blueviolet;
-  color: #fff;
+  color: green;
 }
 .cancel-btn {
   min-width: 80px;
   padding: 5px;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: transparent;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
 }
 .cancel-btn:hover {
-  background: red;
-  color: #fff;
+  color: red;
 }
 .update-btn {
   min-width: 80px;
   padding: 5px;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: transparent;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
 }
 .update-btn:hover {
-  background: blueviolet;
-  color: #fff;
+  color: green;
 }
 .blog-footer {
   display: flex;
@@ -832,7 +891,7 @@ textarea {
     width: 10px;
   }
   .post-header h2 {
-    font-size: 25px;
+    font-size: 32px;
     font-weight: 600;
     width: 100%;
     margin: 0;
@@ -848,38 +907,58 @@ textarea {
     padding: 0;
     row-gap: 1rem;
   }
-  .post-content h1 {
+  .post-content h3 {
+    font-size: 28px;
+  }
+  .post-markup {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    row-gap: 0;
+  }
+  .post-markup h1 {
     font-size: 24px;
     font-weight: 600;
     width: 100%;
+    margin: 0;
   }
-  .post-content h2 {
+  .post-markup h2 {
     font-size: 22px;
     font-weight: 600;
     width: 100%;
+    margin: 0;
   }
-  .post-content h3 {
+  .post-markup h3 {
     font-size: 20px;
     font-weight: 600;
     width: 100%;
+    margin: 0;
   }
-  .post-content h4 {
+  .post-markup h4 {
     font-size: 18px;
     font-weight: 600;
     width: 100%;
+    margin: 0;
   }
-  .post-content h5 {
+  .post-markup h5 {
     font-size: 17px;
     font-weight: 600;
     width: 100%;
+    margin: 0;
   }
-  .post-content h6 {
+  .post-markup h6 {
     font-size: 16px;
     font-weight: 600;
     width: 100%;
+    margin: 0;
   }
-  .post-content p {
+  .post-markup p {
     font-size: 14px;
+    margin: 0;
   }
   .post-wrapper {
     display: flex;

@@ -128,6 +128,31 @@
   </div>
 
   <!-- CREATE MODAL -->
+  <!-- <pre>
+    <header>
+    <h3>It all started 8 years ago</h3>
+    <p>
+      I never really understood the importance of hard work. It didn't really appeal to me at all.
+      Upon completing my schooling, I was constantly bombarded with daily reminders of how essential hard work is.
+      But what does it really mean to work hard??
+    </p>
+    </header>
+    <br>
+    <article>
+      <h3>Working hard is not literal!</h3>
+    <p>
+      What do I mean by that? When you normally picture a hardworking individual, you sort of visualize someone physically executing hard labour.
+      At least thats what I feel. It kind of puts you off because who wants to spend their time and energy doing something so mundane?
+      I can assume nobody wants to, right?
+      So what is it that we need to understand? 
+      In my opinion and experience, working hard is simply devoting oneself to personal development and growth. Understand that if you commit to something, with the promise that you will fulfill it to the utmost of your capabilities,
+      then you are obligated to invest every ounce of energy, time and enthusiasm that you can muster into achieving not only what you set out to do, but in meeting the requirements that have been set by those before you.
+    </p>
+    <p>
+      That is what hard work means to me. The insatiable drive to and hunger to conquer.
+    </p>
+    </article>
+  </pre> -->
 
   <!-- Button trigger modal -->
 
@@ -204,16 +229,22 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="cancel-btn shadow-sm"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="cancel-btn" data-bs-dismiss="modal">
                 Cancel
               </button>
-              <button class="submit-btn shadow-sm" :disabled="loading">
-                <span v-show="!loading">Create</span>
-                <span v-show="loading">Uploading...</span>
+              <button
+                @click.prevent="addPost"
+                class="submit-btn"
+                type="button"
+                :disabled="loading"
+              >
+                <span v-show="!loading">Upload</span>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                  v-show="loading"
+                ></span>
               </button>
             </div>
           </form>
@@ -501,7 +532,7 @@ textarea {
   border: none;
   background: rgba(0, 0, 0, 0.95);
   color: #fff;
-  transition: ease-in-out 500ms;
+  transition: all 0.5s;
 }
 .create-btn:hover {
   background: blueviolet;
@@ -534,26 +565,24 @@ textarea {
   padding: 5px;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: transparent;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
 }
 .submit-btn:hover {
-  background: blueviolet;
-  color: #fff;
+  color: green;
 }
 .cancel-btn {
   min-width: 80px;
   padding: 5px;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: transparent;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
 }
 .cancel-btn:hover {
-  background: red;
-  color: #fff;
+  color: red;
 }
 .user-actions {
   display: flex;
@@ -573,6 +602,10 @@ textarea {
   min-width: 200px;
   padding: 10px;
   border: none;
+  transition: all 0.5s;
+}
+.search-bar:focus {
+  transform: scale(1.05);
 }
 .modal-body {
   display: flex;
@@ -719,24 +752,6 @@ textarea {
   }
   .create-btn {
     min-width: 150px;
-    padding: 5px;
-    outline: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.95);
-    color: #fff;
-    transition: ease-in-out 500ms;
-  }
-  .submit-btn {
-    min-width: 80px;
-    padding: 5px;
-    outline: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.95);
-    color: #fff;
-    transition: ease-in-out 500ms;
-  }
-  .cancel-btn {
-    min-width: 80px;
     padding: 5px;
     outline: none;
     border: none;

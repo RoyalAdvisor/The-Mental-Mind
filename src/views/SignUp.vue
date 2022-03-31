@@ -43,13 +43,11 @@
           <ErrorMessage name="password" class="error-feedback" />
         </div>
         <div class="form-group">
-          <button
-            type="submit"
-            class="submit-btn shadow-sm"
-            :disabled="loading"
-          >
+          <button type="submit" class="submit-btn" :disabled="loading">
             <span v-show="!loading">Sign up</span>
-            <span v-show="loading">Signing up...</span>
+            <div class="spinner-border" role="status" v-show="loading">
+              <span class="visually-hidden">Loading...</span>
+            </div>
           </button>
         </div>
         <div
@@ -214,13 +212,15 @@ Form {
   padding: 5px;
   outline: none;
   border: none;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: transparent;
+  color: #1f1f1f;
   transition: ease-in-out 500ms;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.submit-btn:focus {
-  background: blueviolet;
-  color: #fff;
+.submit-btn:hover {
+  color: green;
 }
 .blog-footer {
   display: flex;
