@@ -432,5 +432,15 @@ export default {
     border: none;
     width: 95%;
   }
+  .update-profile-btn svg,
+  .delete-profile-btn svg {
+    color: #1f1f1f;
+    width: 20px;
+    height: 20px;
+  }
+  .update-profile-btn,
+  .delete-profile-btn {
+    min-width: 30px;
+  }
 }
 </style>

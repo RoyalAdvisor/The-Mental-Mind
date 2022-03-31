@@ -738,7 +738,7 @@ textarea {
   color: #1f1f1f;
   transition: ease-in-out 500ms;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 .comment-delete-btn svg,
@@ -855,6 +855,22 @@ textarea {
   border-radius: 100%;
 }
 @media only screen and (max-width: 770px) {
+  .edit-btn,
+  .delete-btn {
+    min-width: 30px;
+  }
+  .comment-delete-btn svg,
+  .comment-post-btn svg {
+    color: #1f1f1f;
+    width: 20px;
+    height: 20px;
+  }
+  .edit-btn svg,
+  .delete-btn svg {
+    color: #1f1f1f;
+    width: 20px;
+    height: 20px;
+  }
   .user-profile {
     width: 20px;
     height: 20px;
