@@ -188,9 +188,6 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">
-          <h6>This cannot be undone</h6>
-        </div>
         <div class="modal-footer">
           <button type="button" class="cancel-btn" data-bs-dismiss="modal">
             Cancel
@@ -201,7 +198,7 @@
             @click.prevent="deleteUser(this.currentUser._id)"
             :disabled="loading"
           >
-            <span v-show="!loading">Delete</span>
+            <span v-show="!loading">Proceed</span>
             <span
               class="spinner-border spinner-border-sm"
               role="status"
@@ -382,13 +379,17 @@ export default {
 }
 .update-btn,
 .cancel-btn {
-  min-width: 80px;
-  padding: 5px;
+  min-width: 60px;
+  padding: 0;
+  margin: 0;
   outline: none;
   border: none;
   background: transparent;
   color: #1f1f1f;
   transition: ease-in-out 500ms;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .update-btn:hover {
   color: green;
@@ -417,11 +418,19 @@ export default {
   font-size: 12px;
   margin: 0;
 }
-.modal-body h6 {
-  color: #1f1f1f;
+.col-md-12 {
+  padding: 0px 12px;
+}
+.modal-body {
+  padding: 12px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 .info-message h6 {
-  margin-bottom: 0;
+  margin: 0;
 }
 @media only screen and (max-width: 770px) {
   .profile-header h2 {

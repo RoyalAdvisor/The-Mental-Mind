@@ -315,7 +315,7 @@
             @click.prevent="deletePost(this.postId)"
             :disabled="loading"
           >
-            <span v-show="!loading">Understood</span>
+            <span v-show="!loading">Proceed</span>
             <span
               class="spinner-border spinner-border-sm"
               role="status"
@@ -691,6 +691,7 @@ textarea {
 .info-message h6 {
   color: #1f1f1f;
   padding: 0;
+  margin: 0;
 }
 .comments-wrapper {
   width: 100%;
@@ -786,38 +787,26 @@ textarea {
   color: red;
   transform: scale(1.1);
 }
-.post-delete-btn {
-  min-width: 80px;
-  padding: 5px;
-  outline: none;
-  border: none;
-  background: transparent;
-  color: #1f1f1f;
-  transition: ease-in-out 500ms;
-}
 .post-delete-btn:hover {
   color: green;
 }
-.cancel-btn {
-  min-width: 80px;
-  padding: 5px;
+.cancel-btn,
+.update-btn,
+.post-delete-btn {
+  min-width: 60px;
+  padding: 0;
+  margin: 0;
   outline: none;
   border: none;
   background: transparent;
   color: #1f1f1f;
   transition: ease-in-out 500ms;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .cancel-btn:hover {
   color: red;
-}
-.update-btn {
-  min-width: 80px;
-  padding: 5px;
-  outline: none;
-  border: none;
-  background: transparent;
-  color: #1f1f1f;
-  transition: ease-in-out 500ms;
 }
 .update-btn:hover {
   color: green;

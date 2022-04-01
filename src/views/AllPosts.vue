@@ -443,10 +443,13 @@ h4 {
   gap: 5px;
 }
 .info-message {
+  padding: 0;
   margin-top: 0.5rem;
 }
 .info-message h6 {
-  margin-bottom: 0;
+  color: #1f1f1f;
+  padding: 0;
+  margin: 0;
 }
 textarea {
   min-height: 264px;
@@ -560,26 +563,22 @@ textarea {
   color: rgba(0, 0, 0, 0.95);
   border-bottom: 2px solid rgba(0, 0, 0, 0.95);
 }
-.submit-btn {
-  min-width: 80px;
-  padding: 5px;
+.submit-btn,
+.cancel-btn {
+  min-width: 60px;
+  padding: 0;
+  margin: 0;
   outline: none;
   border: none;
   background: transparent;
   color: #1f1f1f;
   transition: ease-in-out 500ms;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .submit-btn:hover {
   color: green;
-}
-.cancel-btn {
-  min-width: 80px;
-  padding: 5px;
-  outline: none;
-  border: none;
-  background: transparent;
-  color: #1f1f1f;
-  transition: ease-in-out 500ms;
 }
 .cancel-btn:hover {
   color: red;
