@@ -527,6 +527,9 @@ export default {
   flex-direction: column;
   width: 50%;
   row-gap: 0;
+  font-family: "Cabin", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 }
 .post-content p {
   font-family: "Cabin", sans-serif;
